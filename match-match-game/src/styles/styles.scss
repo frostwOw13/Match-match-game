@@ -2,7 +2,6 @@
 @import url(./fonts.css);
 
 body {
-  background-color: #222;
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
@@ -96,6 +95,18 @@ body {
     border-radius: 5px;
     &:hover {
       background-color: #dedede;
+    }
+  }
+}
+
+#main {
+  .main-wrapper {
+    background-color: #c4c4c4;
+    margin: 33px 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .main__timer {
     }
   }
 }

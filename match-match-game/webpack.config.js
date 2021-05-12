@@ -1,22 +1,25 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
-const ESLintPlugin = require('eslint-webpack-plugin');
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const {CleanWebpackPlugin} = require('clean-webpack-plugin')
+const CopyPlugin = require('copy-webpack-plugin')
+const ESLintPlugin = require('eslint-webpack-plugin')
 
-const devServer = (isDev) => !isDev ? {} : {
-  devServer: {
-    open: true,
-    hot: true,
-    port: 8080,
-    contentBase: path.join(__dirname, 'public'),
-  },
-};
+const devServer = (isDev) =>
+  !isDev
+    ? {}
+    : {
+        devServer: {
+          open: true,
+          port: 8080,
+          contentBase: path.join(__dirname, 'public'),
+        },
+      }
 
-const esLintPlugin = (isDev) => isDev ? [] : [ new ESLintPlugin({ extensions: ['ts', 'js'] }) ];
+const esLintPlugin = (isDev) =>
+  isDev ? [] : [new ESLintPlugin({extensions: ['ts', 'js']})]
 
-module.exports = ({ development }) => ({
+module.exports = ({development}) => ({
   mode: development ? 'development' : 'production',
   devtool: development ? 'inline-source-map' : false,
   entry: {
@@ -48,23 +51,21 @@ module.exports = ({ development }) => ({
       },
       {
         test: /\.s[ac]ss$/i,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
-      }
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+      },
     ],
   },
   plugins: [
     ...esLintPlugin(development),
-    new MiniCssExtractPlugin({ filename: '[name].[contenthash].css' }),
-    new HtmlWebpackPlugin({ template: './src/index.html' }),
+    new MiniCssExtractPlugin({filename: '[name].[contenthash].css'}),
+    new HtmlWebpackPlugin({template: './src/index.html'}),
     new CopyPlugin({
-      patterns: [
-        { from: 'public' },
-      ],
+      patterns: [{from: 'public'}],
     }),
-    new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
+    new CleanWebpackPlugin({cleanStaleWebpackAssets: false}),
   ],
   resolve: {
     extensions: ['.ts', '.js'],
   },
-  ...devServer(development)
-});
+  ...devServer(development),
+})
