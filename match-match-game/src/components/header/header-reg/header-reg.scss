@@ -1,0 +1,18 @@
+.header__btn {
+  width: 207px;
+  height: 36px;
+  outline: none;
+  text-transform: none;
+  border: none;
+  text-transform: uppercase;
+  color: #2196f3;
+  background-color: #fff;
+  cursor: pointer;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 1.25px;
+  border-radius: 5px;
+  &:hover {
+    background-color: #dedede;
+  }
+}
