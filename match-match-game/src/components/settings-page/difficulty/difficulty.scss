@@ -1,0 +1,40 @@
+.settings__dif {
+  .dif__title {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 30px;
+  }
+}
+
+.select {
+  position: relative;
+  width: 250px;
+  cursor: pointer;
+  padding-bottom: 15px;
+  border-bottom: solid 1px #E5E5E5;
+  select {
+    display: block;
+    width: 100%;
+    background: none;
+    border: none;
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+      background: none;
+    }
+  }
+  &:after {
+    content: "";
+    display: block;
+    border-style: solid;
+    border-width: 5px 5px 0 5px;
+    border-color: #000 transparent transparent transparent;
+    position: absolute;
+    top: 5px;
+    right: 0;
+    z-index: 1;
+  }
+}

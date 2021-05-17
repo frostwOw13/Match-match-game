@@ -4,6 +4,7 @@ import { GameTimer } from "./components/game-timer/game-timer";
 import { Header } from "./components/header/header";
 import { AboutGame } from "./components/about-game/about-game";
 import { BestScore } from "./components/best-score/best-score";
+import { Settings } from "./components/settings-page/settings";
 
 export class App {
   private readonly header: Header;
@@ -11,6 +12,7 @@ export class App {
   private readonly gameTimer: GameTimer;
   private readonly aboutGame: AboutGame;
   private readonly bestScore: BestScore;
+  private readonly settings: Settings;
 
   constructor(private readonly rootElement: HTMLElement) {
     this.header = new Header();
@@ -18,6 +20,7 @@ export class App {
     this.gameTimer = new GameTimer();
     this.aboutGame = new AboutGame();
     this.bestScore = new BestScore();
+    this.settings = new Settings();
 
     window.location.hash = "#/";
     this.render(window.location.hash);
@@ -41,6 +44,10 @@ export class App {
       case "#/best-score/":
         this.rootElement.innerHTML = ``;
         this.rootElement.appendChild(this.bestScore.element);
+        break
+      case "#/settings/":
+        this.rootElement.innerHTML = ``;
+        this.rootElement.appendChild(this.settings.element);
     }
   }
 
