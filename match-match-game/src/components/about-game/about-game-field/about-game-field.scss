@@ -1,0 +1,67 @@
+.about-game__field {
+  display: flex;
+  justify-content: space-between;
+  .about-game__images {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    .images__img {
+      width: 116px;
+      height: 73px;
+      background-image: url(../../../assets/images/how-to-play-settings.jpg);
+
+      &:first-child {
+        background-image: url(../../../assets/images/how-to-play-form.jpg);
+        width: 302px;
+        height: 218px;
+      }
+
+      &:last-child {
+        background-image: url(../../../assets/images/how-to-play-game-field.jpg);
+        width: 330px;
+        height: 240px;
+      }
+    }
+  }
+}
+
+.about-game__blocks {
+  .blocks__item {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: #ffffff;
+    margin-bottom: 20px;
+    padding: 16px;
+    height: 120px;
+
+    &:first-child {
+      height: 240px;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+      height: 240px;
+    }
+
+    .item__number {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      line-height: 21px;
+      color: #FFFFFF;
+      background-color: #2196f3;
+      width: 40px;
+      height: 40px;
+      border-radius: 20px;
+      margin-right: 16px;
+    }
+
+    .item__title {
+      width: 270px;
+      margin: 0;
+    }
+  }
+}

@@ -3,22 +3,31 @@
   align-items: center;
   justify-content: flex-start;
   flex-basis: 81%;
-  color: #ffffff;
   width: 100%;
   height: 64px;
   .nav__item {
     height: 100%;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding: 0 15px;
+    a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      width: 100%;
+      padding: 0 15px;
+      text-decoration: none;
+      color: #FFFFFF;
+
+      p {
+        margin: 9px 0 0 0;
+      }
+    }
     &:first-child {
       margin-left: 150px;
     }
-    p {
-      margin: 9px 0 0 0;
-    }
+
     &:hover {
       background-color: #1e88e5;
       cursor: pointer;
