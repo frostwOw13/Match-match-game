@@ -1,0 +1,13 @@
+.best-score {
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+  height: 100%;
+  margin: 0 100px 0 50px;
+  .best-score__title {
+    justify-self: flex-start;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 30px;
+  }
+}

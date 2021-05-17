@@ -3,21 +3,24 @@ import { ImageCategoryModel } from "./models/image-category-model";
 import { GameTimer } from "./components/game-timer/game-timer";
 import { Header } from "./components/header/header";
 import { AboutGame } from "./components/about-game/about-game";
+import { BestScore } from "./components/best-score/best-score";
 
 export class App {
   private readonly header: Header;
   private readonly mainField: MainField;
   private readonly gameTimer: GameTimer;
   private readonly aboutGame: AboutGame;
+  private readonly bestScore: BestScore;
 
   constructor(private readonly rootElement: HTMLElement) {
     this.header = new Header();
     this.mainField = new MainField();
     this.gameTimer = new GameTimer();
     this.aboutGame = new AboutGame();
+    this.bestScore = new BestScore();
 
     window.location.hash = "#/";
-    this.render('#/');
+    this.render(window.location.hash);
   }
 
   render(location: string) {
@@ -35,6 +38,9 @@ export class App {
         this.rootElement.appendChild(this.gameTimer.element);
         this.rootElement.appendChild(this.mainField.element);
         break
+      case "#/best-score/":
+        this.rootElement.innerHTML = ``;
+        this.rootElement.appendChild(this.bestScore.element);
     }
   }
 

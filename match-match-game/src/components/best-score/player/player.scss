@@ -1,0 +1,42 @@
+.best-score__player {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  border-bottom: solid 1px rgba(33, 33, 33, 0.08);
+  margin-bottom: 10px;
+  .player__picture {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: gray;
+  }
+  .player__score {
+    display: flex;
+    span {
+      margin-left: 5px;
+      color: #2196F3;
+    }
+  }
+}
+
+.player__item {
+  width: 80%;
+  height: 100%;
+  margin-left: 20px;
+  .item__name {
+    line-height: 21px;
+    letter-spacing: 0.1px;
+    margin: 0;
+    margin-bottom: 5px;
+  }
+  .item__email {
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: 0.4px;
+    margin: 0;
+  }
+}
