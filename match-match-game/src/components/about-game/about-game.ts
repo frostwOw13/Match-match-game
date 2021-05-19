@@ -1,5 +1,5 @@
-import { BaseComponent } from "../base-component";
-import { AboutGameField } from "./about-game-field/about-game-field";
+import { BaseComponent } from '../base-component';
+import { AboutGameField } from './about-game-field/about-game-field';
 import './about-game.scss';
 
 export class AboutGame extends BaseComponent {

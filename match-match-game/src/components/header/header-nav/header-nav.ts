@@ -1,4 +1,4 @@
-import { BaseComponent } from "../../base-component";
+import { BaseComponent } from '../../base-component';
 import './header-nav.scss';
 
 export class HeaderNav extends BaseComponent {

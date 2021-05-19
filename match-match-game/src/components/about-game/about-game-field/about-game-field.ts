@@ -1,9 +1,9 @@
-import { BaseComponent } from "../../base-component";
+import { BaseComponent } from '../../base-component';
 import './about-game-field.scss';
 
 export class AboutGameField extends BaseComponent {
   constructor() {
-    super('div', ['about-game__field'])
+    super('div', ['about-game__field']);
 
     this.element.innerHTML = `
     <div class="about-game__blocks">
@@ -37,6 +37,6 @@ export class AboutGameField extends BaseComponent {
       <div class="images__img"></div>
       <div class="images__img"></div>
     </div>
-    `
+    `;
   }
 }

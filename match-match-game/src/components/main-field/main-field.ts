@@ -1,6 +1,6 @@
-import { delay } from "../../shared/delay";
-import { BaseComponent } from "../base-component";
-import { Card } from "../card/card";
+import { delay } from '../../shared/delay';
+import { BaseComponent } from '../base-component';
+import { Card } from '../card/card';
 import './main-field.scss';
 
 const FLIP_DELAY = 1000; // ms, delay between flipping cards
@@ -8,7 +8,9 @@ const SHOW_TIME = 5000; // ms, time that show cards before the game starts
 
 export class MainField extends BaseComponent {
   private activeCard?: Card;
+
   private isAnimation = false;
+
   private cards: Card[] = [];
 
   constructor() {
@@ -17,7 +19,7 @@ export class MainField extends BaseComponent {
 
   clear() {
     this.cards = [];
-    this.element.innerHTML = ``;
+    this.element.innerHTML = '';
   }
 
   addCards(cards: Card[]) {
@@ -34,7 +36,7 @@ export class MainField extends BaseComponent {
     const cards = images
       .concat(images)
       .map((url: string) => new Card(url))
-      .sort(() => Math.random() - .5)
+      .sort(() => Math.random() - 0.5);
 
     cards.forEach((card) => {
       card.element.addEventListener('click', () => this.cardHandler(card));
@@ -56,8 +58,8 @@ export class MainField extends BaseComponent {
       return;
     }
 
-    if (this.activeCard.image != card.image) { // If cards not match
-      await delay(FLIP_DELAY);  // TODO: Make cards red
+    if (this.activeCard.image !== card.image) { // If cards not match
+      await delay(FLIP_DELAY);// TODO: Make cards red
       await Promise.all([this.activeCard.flipToBack(), card.flipToBack()]);
     } // TODO: make else statement and make cards green
 

@@ -1,4 +1,4 @@
-import { BaseComponent } from "../../base-component";
+import { BaseComponent } from '../../base-component';
 import './difficulty.scss';
 
 export class Difficulty extends BaseComponent {

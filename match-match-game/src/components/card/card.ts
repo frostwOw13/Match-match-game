@@ -1,5 +1,5 @@
-import './card.scss'
-import { BaseComponent } from "../base-component";
+import './card.scss';
+import { BaseComponent } from '../base-component';
 
 const FLIP_CLASS = 'flipped';
 
@@ -14,7 +14,7 @@ export class Card extends BaseComponent {
         <div class="card_front" style="background-image: url('./images/${image}')"></div>
         <div class="card_back"></div>
       </div>
-    `
+    `;
   }
 
   flipToBack() {
@@ -33,6 +33,6 @@ export class Card extends BaseComponent {
       this.element.addEventListener('transitionend', () => resolve(), {
         once: true,
       });
-    })
+    });
   }
 }

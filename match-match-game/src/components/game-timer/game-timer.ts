@@ -1,16 +1,17 @@
-import { BaseComponent } from "../base-component";
+import { BaseComponent } from '../base-component';
 import './game-timer.scss';
 
 export class GameTimer extends BaseComponent {
-  private seconds: number = 0;
-  private minutes: number = 0;
-  
+  private seconds: number;
+
+  private minutes: number;
+
   constructor() {
-    super('div', ['main__timer'])
+    super('div', ['main__timer']);
 
     this.element.innerHTML = `
       <p class="timer__count">00:00</p>
-    `
+    `;
   }
 
   timerStart() {
@@ -23,13 +24,9 @@ export class GameTimer extends BaseComponent {
       }
 
       this.element.innerHTML = `
-        <p class="timer__count">${this.minutes < 10 ? '0' + this.minutes : this.minutes}:
-          ${this.seconds < 10 ? '0' + this.seconds : this.seconds}</p>
-      `
+        <p class="timer__count">${this.minutes < 10 ? `0${this.minutes}` : this.minutes}:
+          ${this.seconds < 10 ? `0${this.seconds}` : this.seconds}</p>
+      `;
     }, 1000);
-  }
-
-  timerStop() {
-
   }
 }

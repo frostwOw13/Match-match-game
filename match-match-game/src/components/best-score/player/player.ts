@@ -1,9 +1,11 @@
-import { BaseComponent } from "../../base-component";
-import "./player.scss";
+import { BaseComponent } from '../../base-component';
+import './player.scss';
 
 export class Player extends BaseComponent {
   private fullName: string;
+
   private email: string;
+
   private score: number;
 
   constructor(fullName: string, email: string, score: number) {
