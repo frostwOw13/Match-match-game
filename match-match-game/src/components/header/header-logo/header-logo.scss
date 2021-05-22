@@ -3,35 +3,26 @@
   font-size: 11px;
   line-height: 16px;
   letter-spacing: 1.25px;
-
-
-  a {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-decoration: none;
-    .logo-container__logo {
-      margin-bottom: 6px;
-      text-transform: uppercase;
-      color: #ffffff;
-      font-size: inherit;
-    }
-    .logo-container__btn {
-      text-decoration: none;
-      outline: none;
-      border: none;
-      height: 20px;
-      width: 80px;
-      text-transform: uppercase;
-      color: #2196f3;
-      background-color: #fff;
-      margin-bottom: 15px;
-      cursor: pointer;
-      border-radius: 3px;
-      &:hover {
-        background-color: #dedede;
-      }
-    }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .logo-container__logo {
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    color: #ffffff;
+    font-size: inherit;
   }
-
+  .logo-container__btn {
+    text-decoration: none;
+    outline: none;
+    border: none;
+    height: 20px;
+    width: 80px;
+    text-transform: uppercase;
+    color: #2196f3;
+    background-color: #fff;
+    margin-bottom: 15px;
+    border-radius: 3px;
+  }
 }

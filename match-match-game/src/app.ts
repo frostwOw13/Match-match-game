@@ -5,6 +5,7 @@ import { Header } from './components/header/header';
 import { AboutGame } from './components/about-game/about-game';
 import { BestScore } from './components/best-score/best-score';
 import { Settings } from './components/settings-page/settings';
+import { PopUp } from './components/pop-up/pop-up';
 
 export class App {
   private readonly header: Header;
@@ -19,6 +20,8 @@ export class App {
 
   private readonly settings: Settings;
 
+  private gameFirstStart: boolean;// Var to initialize first game
+
   constructor(private readonly rootElement: HTMLElement) {
     this.header = new Header();
     this.mainField = new MainField();
@@ -26,6 +29,7 @@ export class App {
     this.aboutGame = new AboutGame();
     this.bestScore = new BestScore();
     this.settings = new Settings();
+    this.gameFirstStart = false;
 
     window.location.hash = '#/';
     this.render(window.location.hash);
@@ -45,6 +49,7 @@ export class App {
         this.rootElement.innerHTML = '';
         this.rootElement.appendChild(this.gameTimer.element);
         this.rootElement.appendChild(this.mainField.element);
+        this.start();
         break;
       case '#/best-score/':
         this.rootElement.innerHTML = '';
@@ -65,7 +70,10 @@ export class App {
     const cat = categories[0];
 
     const images = cat.images.map((name) => `${cat.category}/${name}`);
-    this.mainField.newGame(images);
-    this.gameTimer.timerStart();
+    if (!this.gameFirstStart) {
+      this.mainField.newGame(images);
+      this.gameTimer.timerStart();
+      this.gameFirstStart = true;
+    }
   }
 }

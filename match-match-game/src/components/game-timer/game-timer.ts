@@ -12,6 +12,9 @@ export class GameTimer extends BaseComponent {
     this.element.innerHTML = `
       <p class="timer__count">00:00</p>
     `;
+
+    this.seconds = 0;
+    this.minutes = 0;
   }
 
   timerStart() {
@@ -28,5 +31,10 @@ export class GameTimer extends BaseComponent {
           ${this.seconds < 10 ? `0${this.seconds}` : this.seconds}</p>
       `;
     }, 1000);
+  }
+
+  timerStop() {
+    clearInterval()
+    console.log(this.minutes, this.seconds)
   }
 }

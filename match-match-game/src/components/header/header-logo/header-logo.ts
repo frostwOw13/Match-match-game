@@ -6,10 +6,8 @@ export class HeaderLogo extends BaseComponent {
     super('div', ['header__logo-container']);
 
     this.element.innerHTML = `
-      <a href="#/game/">
-        <h3 class="logo-container__logo">match</h3>
-        <button class="logo-container__btn">match</button>
-      </a>
+      <h3 class="logo-container__logo">match</h3>
+      <button class="logo-container__btn">match</button>
     `;
   }
 }

@@ -5,6 +5,10 @@
   flex: 1 0 22%;
   perspective: 700px;
   cursor: pointer;
+  width: 168px;
+  height: 168px;
+  margin: 10px;
+  transition: all 0.5s;
 
   &:hover > .card {
     transform: translateZ(50px);
@@ -13,36 +17,5 @@
 
   &.flipped > .card {
     transform: rotateY(180deg);
-  }
-
-  .card {
-    width: 168px;
-    height: 168px;
-    transform-style: preserve-3d;
-    transition: all 0.5s;
-    box-shadow: 0 0 15px gray;
-    margin-bottom: 20px;
-
-    &_front,
-    &_back {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      backface-visibility: hidden;
-      border-radius: 5px;
-      background-position: center;
-      background-size: cover;
-    }
-
-    &_front {
-
-    }
-
-    &_back {
-      background-image: url(../../assets/images/card-back.jpg);
-      transform: rotateY(180deg);
-    }
   }
 }
