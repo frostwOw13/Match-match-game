@@ -6,7 +6,7 @@ export class GameTimer extends BaseComponent {
 
   minutes: number;
 
-  interval!: ReturnType<typeof setInterval>
+  interval!: ReturnType<typeof setInterval>;
 
   constructor() {
     super('div', ['main__timer']);

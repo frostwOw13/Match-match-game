@@ -1,19 +1,18 @@
-import { BaseComponent } from "../base-component";
+import { BaseComponent } from '../base-component';
 import './pop-up.scss';
 
 export class PopUp extends BaseComponent {
   constructor() {
-    super('div', ['pop-up'])
-
+    super('div', ['pop-up']);
   }
 
-  winner(minutes: number, seconds: number) {
+  winner(minutes: number, seconds: number, score: number) {
     this.element.innerHTML = `
       <div class="pop-up__body">
         <div class="pop-up__content">
           <div class="pop-up__text">
           Congratulations! You successfully found all matches on ${minutes ? `${minutes}.${seconds} minutes` : `${seconds} seconds`}.
-          Would you like to save your results?
+          You have scored ${score} points. Would you like to save your results?
           </div>
           <div class="buttons">
             <button id="yes" class="btn">Yes</button>
@@ -28,8 +27,8 @@ export class PopUp extends BaseComponent {
       if (target.id === 'no') {
         window.location.hash = '#/';
         const timerCount = document.querySelector('.timer__count');
-        if (timerCount) timerCount.innerHTML = "00:00";
+        if (timerCount) timerCount.innerHTML = '00:00';
       }
-    })
+    });
   }
 }

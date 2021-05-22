@@ -1,4 +1,4 @@
-import { BaseComponent } from "../../base-component";
+import { BaseComponent } from '../../base-component';
 import './card-self.scss';
 
 export class CardSelf extends BaseComponent {

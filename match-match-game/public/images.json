@@ -2,7 +2,10 @@
   {
     "category": "animals",
     "images": [
-      "bear.png"
+      "bear.png",
+      "giraff.png",
+      "gorilla.png",
+      "lion.png"
     ]
   }
 ]
