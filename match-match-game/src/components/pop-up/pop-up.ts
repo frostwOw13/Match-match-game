@@ -27,8 +27,8 @@ export class PopUp extends BaseComponent {
       const target = event.target as Element;
       if (target.id === 'no') {
         window.location.hash = '#/';
-        document.querySelector('.main__timer')?.remove();
-        document.querySelector('.main__field')?.remove();
+        const timerCount = document.querySelector('.timer__count');
+        if (timerCount) timerCount.innerHTML = "00:00";
       }
     })
   }

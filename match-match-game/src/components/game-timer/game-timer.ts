@@ -2,9 +2,11 @@ import { BaseComponent } from '../base-component';
 import './game-timer.scss';
 
 export class GameTimer extends BaseComponent {
-  private seconds: number;
+  seconds: number;
 
-  private minutes: number;
+  minutes: number;
+
+  interval!: ReturnType<typeof setInterval>
 
   constructor() {
     super('div', ['main__timer']);
@@ -18,7 +20,7 @@ export class GameTimer extends BaseComponent {
   }
 
   timerStart() {
-    setInterval(() => {
+    this.interval = setInterval(() => {
       if (this.seconds > 59) {
         this.minutes++;
         this.seconds = 0;
@@ -34,7 +36,8 @@ export class GameTimer extends BaseComponent {
   }
 
   timerStop() {
-    clearInterval()
-    console.log(this.minutes, this.seconds)
+    clearInterval(this.interval);
+    this.minutes = 0;
+    this.seconds = 0;
   }
 }

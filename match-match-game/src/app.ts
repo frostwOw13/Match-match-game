@@ -6,17 +6,16 @@ import { AboutGame } from './components/about-game/about-game';
 import { BestScore } from './components/best-score/best-score';
 import { Settings } from './components/settings-page/settings';
 import { PopUp } from './components/pop-up/pop-up';
+import { Game } from './game';
 
 export class App {
   private readonly header: Header;
 
-  private readonly mainField: MainField;
-
-  private readonly gameTimer: GameTimer;
-
   private readonly aboutGame: AboutGame;
 
   private readonly bestScore: BestScore;
+
+  private readonly game: Game;
 
   private readonly settings: Settings;
 
@@ -24,11 +23,10 @@ export class App {
 
   constructor(private readonly rootElement: HTMLElement) {
     this.header = new Header();
-    this.mainField = new MainField();
-    this.gameTimer = new GameTimer();
     this.aboutGame = new AboutGame();
     this.bestScore = new BestScore();
     this.settings = new Settings();
+    this.game = new Game();
     this.gameFirstStart = false;
 
     window.location.hash = '#/';
@@ -47,9 +45,14 @@ export class App {
         break;
       case '#/game/':
         this.rootElement.innerHTML = '';
-        this.rootElement.appendChild(this.gameTimer.element);
-        this.rootElement.appendChild(this.mainField.element);
-        this.start();
+        if (!this.game.gameFirstStart) {
+          this.game.newGame();
+          console.log('new game');
+          this.gameFirstStart = true;
+        } else {
+          console.log('continue game');
+          this.game.continueGame();
+        }
         break;
       case '#/best-score/':
         this.rootElement.innerHTML = '';
@@ -61,19 +64,6 @@ export class App {
         break;
       default:
         throw new Error('No route');
-    }
-  }
-
-  async start() {
-    const res = await fetch('./images.json');
-    const categories: ImageCategoryModel[] = await res.json();
-    const cat = categories[0];
-
-    const images = cat.images.map((name) => `${cat.category}/${name}`);
-    if (!this.gameFirstStart) {
-      this.mainField.newGame(images);
-      this.gameTimer.timerStart();
-      this.gameFirstStart = true;
     }
   }
 }
