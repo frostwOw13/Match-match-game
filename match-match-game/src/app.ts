@@ -31,12 +31,7 @@ export class App {
 	 */
   private readonly settings: Settings;
 
-  /**
-	 * Initialize a new game.
-	 */
-  private gameFirstStart: boolean;
-
-  form: Form;
+  public form: Form;
 
   constructor(private readonly rootElement: HTMLElement) {
     this.header = new Header();
@@ -44,7 +39,6 @@ export class App {
     this.bestScore = new BestScore();
     this.settings = new Settings();
     this.game = new Game();
-    this.gameFirstStart = false;
     this.form = new Form();
 
     window.location.hash = '#/';
@@ -67,7 +61,7 @@ export class App {
         if (!this.game.gameFirstStart) {
           this.game.newGame();
           console.log('new game');
-          this.gameFirstStart = true;
+          this.game.gameFirstStart = true;
         } else {
           console.log('continue game');
           this.game.continueGame();

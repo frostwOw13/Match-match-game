@@ -1,8 +1,7 @@
 import './card.scss';
 import { BaseComponent } from '../base-component';
 import { CardSelf } from './card-self/card-self';
-
-const FLIP_CLASS = 'flipped';
+import { FLIP_CLASS } from '../../shared/constants';
 
 export class Card extends BaseComponent {
   isFlipped = false;
@@ -16,12 +15,12 @@ export class Card extends BaseComponent {
     this.element.appendChild(this.cardSelf.element);
   }
 
-  flipToBack() {
+  public flipToBack(): Promise<void> {
     this.isFlipped = true;
     return this.flip(true);
   }
 
-  flipToFront() {
+  public flipToFront(): Promise<void> {
     this.isFlipped = false;
     return this.flip();
   }

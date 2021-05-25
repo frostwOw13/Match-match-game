@@ -18,8 +18,8 @@ export class BestScore extends BaseComponent {
       new Player('Jane Doe', 'jane.doe@gmail.com', 169),
     );
 
-    for (let i = 0; i < this.players.length; i++) {
-      this.element.appendChild(this.players[i].element);
-    }
+    this.players.forEach((player) => {
+      this.element.appendChild(player.element);
+    });
   }
 }

@@ -3,16 +3,34 @@ import { GameTimer } from './components/game-timer/game-timer';
 import { MainField } from './components/main-field/main-field';
 import { PopUp } from './components/pop-up/pop-up';
 import { ImageCategoryModel } from './models/image-category-model';
+import { delay } from './shared/delay';
+import { FLIP_DELAY } from './shared/constants';
 
 export class Game {
-  gameFirstStart: boolean;
 
+  /**
+   * Initialized the first game
+   */
+  public gameFirstStart: boolean;
+
+  /**
+   * For scoring the points
+   */
   private score: number;
 
-  private falseCards: number;// incorrectly selected cards
+  /**
+   * Incorrectly selected cards
+   */
+  private falseCards: number;
 
+  /**
+   * Checking if card is choosen now or not
+   */
   private activeCard?: Card;
 
+  /**
+   * Boolean for prevent double clicking bug on cards
+   */
   private isAnimation = false;
 
   private readonly gameTimer: GameTimer;
@@ -20,8 +38,6 @@ export class Game {
   private readonly mainField: MainField;
 
   private readonly popUp: PopUp;
-
-  private cards: Card[] = [];
 
   constructor() {
     this.gameTimer = new GameTimer();
@@ -32,7 +48,7 @@ export class Game {
     this.falseCards = 0;
   }
 
-  addField(images: string[]) {
+  public addField(images: string[]): void {
     this.mainField.clear();
 
     const cards = images
@@ -47,7 +63,7 @@ export class Game {
     this.mainField.addCards(cards);
   }
 
-  private async cardHandler(card: Card) {
+  private async cardHandler(card: Card): Promise<void> {
     if (this.isAnimation) return;
     if (!card.isFlipped) return;
     this.isAnimation = true;
@@ -63,7 +79,7 @@ export class Game {
     if (this.activeCard.image !== card.image) { // If cards not match
       this.mainField.removeAddClass(this.activeCard.cardSelf.element, card.cardSelf.element, 'red');
       this.falseCards++;
-      // await delay(FLIP_DELAY);
+      await delay(FLIP_DELAY);
       await Promise.all([this.activeCard.flipToBack(), card.flipToBack()]);
     } else {
       this.activeCard.cardSelf.element.classList.add('green');
@@ -89,7 +105,7 @@ export class Game {
     this.isAnimation = false;
   }
 
-  async newGame() {
+  public async newGame(): Promise<void> {
     const res = await fetch('./images.json');
     const categories: ImageCategoryModel[] = await res.json();
     const cat = categories[0];
@@ -102,12 +118,12 @@ export class Game {
     this.gameTimer.timerStart();
   }
 
-  continueGame() {
+  public continueGame() {
     document.getElementById('main')?.appendChild(this.gameTimer.element);
     document.getElementById('main')?.appendChild(this.mainField.element);
   }
 
-  win() {
+  private win(): void {
     this.gameTimer.timerStop();
     const minutes = Number(document.querySelector('.timer__count')?.innerHTML.split(':')[0]);
     const seconds = Number(document.querySelector('.timer__count')?.innerHTML.split(':')[1]);

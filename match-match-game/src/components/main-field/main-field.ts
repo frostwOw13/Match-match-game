@@ -1,9 +1,7 @@
 import { BaseComponent } from '../base-component';
 import { Card } from '../card/card';
 import './main-field.scss';
-
-const FLIP_DELAY = 1000; // ms, delay between flipping cards
-const SHOW_TIME = 1000; // ms, time that show cards before the game starts
+import { SHOW_TIME } from '../../shared/constants';
 
 export class MainField extends BaseComponent {
   cards: Card[] = [];
