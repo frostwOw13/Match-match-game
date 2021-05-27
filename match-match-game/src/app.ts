@@ -52,9 +52,8 @@ export class App {
 
     switch (location) {
       case '#/':
-        // this.rootElement.innerHTML = '';
-        // this.rootElement.appendChild(this.aboutGame.element);
-        this.rootElement.appendChild(this.form.element);
+        this.rootElement.innerHTML = '';
+        this.rootElement.appendChild(this.aboutGame.element);
         break;
       case '#/game/':
         this.rootElement.innerHTML = '';

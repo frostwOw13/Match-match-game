@@ -5,6 +5,7 @@ import { PopUp } from './components/pop-up/pop-up';
 import { ImageCategoryModel } from './models/image-category-model';
 import { delay } from './shared/delay';
 import { FLIP_DELAY } from './shared/constants';
+import { Form } from './components/form/form';
 
 export class Game {
 
@@ -39,10 +40,13 @@ export class Game {
 
   private readonly popUp: PopUp;
 
+  private readonly form: Form;
+
   constructor() {
     this.gameTimer = new GameTimer();
     this.mainField = new MainField();
     this.popUp = new PopUp();
+    this.form = new Form();
     this.gameFirstStart = false;
     this.score = 0;
     this.falseCards = 0;
@@ -133,6 +137,12 @@ export class Game {
     this.mainField.element.appendChild(this.popUp.element);
     this.popUp.element.classList.add('active');
     this.popUp.winner(minutes, seconds, this.score);
+    if (this.popUp.isReg) {
+      this.popUp.element.classList.add('hidden');
+
+      this.mainField.element.appendChild(this.form.element);
+      this.form.validate();
+    }
     this.gameFirstStart = false;
   }
 }

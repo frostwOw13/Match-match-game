@@ -7,11 +7,13 @@
   background-color: rgba(0, 0, 0, 0.253);
   opacity: 0;
   visibility: hidden;
-  transition: 1s ease all;
 
   &.active {
     opacity: 1;
     visibility: visible;
+  }
+  &.hidden {
+    visibility: hidden;
   }
 }
 

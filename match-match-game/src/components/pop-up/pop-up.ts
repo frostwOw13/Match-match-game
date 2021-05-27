@@ -1,9 +1,20 @@
 import { BaseComponent } from '../base-component';
+import { Form } from '../form/form';
 import './pop-up.scss';
 
 export class PopUp extends BaseComponent {
+  /**
+   * If player press add user to score page
+   */
+  public isReg: boolean;
+
+  form: Form;
+
   constructor() {
     super('div', ['pop-up']);
+
+    this.isReg = false;
+    this.form = new Form;
   }
 
   winner(minutes: number, seconds: number, score: number) {
@@ -28,6 +39,11 @@ export class PopUp extends BaseComponent {
         window.location.hash = '#/';
         const timerCount = document.querySelector('.timer__count');
         if (timerCount) timerCount.innerHTML = '00:00';
+      } else if (target.id === 'yes') {
+        this.isReg = true;
+        this.element.classList.add('hidden')
+        this.element.before(this.form.element);
+        this.form.validate();
       }
     });
   }

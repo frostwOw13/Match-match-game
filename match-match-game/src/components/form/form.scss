@@ -1,14 +1,25 @@
 .form__container {
-	background-color: #fff;
-	border-radius: 5px;
-	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-	overflow: hidden;
-	width: 639px;
-  height: 460px;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 24px;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.253);
+  transition: 1 ease all;
+  
+  .form__body {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    width: 639px;
+    height: 460px;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    margin: 200px auto;
+  }
 }
+
 .form__header {
   margin-left: 16px;
   padding-top: 15px;
@@ -60,19 +71,43 @@
       border-color: #777;
     }
 
-    i {
+    .checkbox {
       visibility: hidden;
       position: absolute;
-      top: 40px;
-      right: 10px;
+      top: 20px;
+      right: 20px;
+      width: 20px;
+      height: 20px;
+      transition: 0.5s ease all;
+
+      span {
+        content: '';
+        position: absolute;
+        background-color: #fff;
+        width: 1.5px;
+      }
     }
 
     small {
-      color: #e74c3c;
+      width: 200px;
+      height: 50px;
+      background-color: #e74c3c;
+      font-size: 12px;
+      line-height: 15px;
+      color: #FFFFFF;
       position: absolute;
-      bottom: 0;
-      left: 0;
+      bottom: 8px;
+      right: 360px;
       visibility: hidden;
+      padding: 15px 0 0 15px;
+      &:after {
+        content: '';
+        position: absolute;
+        border: 5px solid transparent;
+        border-left: 5px solid #e74c3c;
+        top: 45px;
+        left: 215px;
+      }
     }
   }
 
@@ -106,30 +141,49 @@
 }
 
 .form-control.success {
-  input {
-    border-color: #2ecc71;
-  }
-
-  i.fa-check-circle {
-    color: #2ecc71;
+  .checkbox {
     visibility: visible;
+    background-color: #018786;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.4);
+    .first {
+      top: 4px;
+      right: 7px;
+      height: 12px;
+      transform: rotate(45deg);
+    }
+    .second {
+      top: 7px;
+      left: 5px;
+      height: 8px;
+      transform: rotate(135deg);
+    }
   }
 }
 
 .form-control.error {
-  input {
-    border-color: #e74c3c;
-  }
-
-  i.fa-exclamation-circle {
-    color: #e74c3c;
+  .checkbox {
     visibility: visible;
+    background-color: #850e0e;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.8);
+    .first {
+      top: 1px;
+      right: 9px;
+      height: 18px;
+      transform: rotate(45deg);
+    }
+    .second {
+      top: 1px;
+      left: 9px;
+      height: 18px;
+      transform: rotate(135deg);
+    }
   }
 
   small {
     visibility: visible;
   }
 }
+
 
 .form__picture {
   width: 200px;
