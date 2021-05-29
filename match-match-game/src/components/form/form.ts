@@ -2,6 +2,8 @@ import { BaseComponent } from '../base-component';
 import './form.scss';
 
 export class Form extends BaseComponent {
+  private readonly btnAdd: HTMLElement | null;
+
   constructor() {
     super('div', ['form']);
 
@@ -49,53 +51,53 @@ export class Form extends BaseComponent {
         </div>
       </div>
     `;
+
+    this.btnAdd = document.getElementById('add');
   }
 
   public validate(): void {
-    const btnAdd = document.getElementById('add');
     const firstName = document.getElementById('firstName');
     const secondName = document.getElementById('secondName');
     const email = document.getElementById('email');
 
-    btnAdd?.addEventListener('click', e => {
+    this.btnAdd?.addEventListener('click', (e) => {
       e.preventDefault();
 
-      this.checkInputs(firstName!, secondName!, email!);
+      Form.checkInputs(firstName!, secondName!, email!);
     });
   }
 
-  private checkInputs(firstName: HTMLElement, secondName: HTMLElement, email: HTMLElement): void {
-
+  static checkInputs(firstName: HTMLElement, secondName: HTMLElement, email: HTMLElement): void {
     const firstNameValue = (<HTMLInputElement>document.getElementById('firstName')).value.trim();
     const secondNameValue = (<HTMLInputElement>document.getElementById('secondName')).value.trim();
     const emailValue = (<HTMLInputElement>document.getElementById('email')).value.trim();
 
-    if(firstNameValue === '') {
-      this.setErrorFor(firstName, 'First name cannot be blank');
-    } else if (this.isName(firstNameValue)) {
-      this.setErrorFor(firstName, 'First name cannot contain numbers or special characters');
+    if (firstNameValue === '') {
+      Form.setErrorFor(firstName, 'First name cannot be blank');
+    } else if (Form.isName(firstNameValue)) {
+      Form.setErrorFor(firstName, 'First name cannot contain numbers or special characters');
     } else {
-      this.setSuccessFor(firstName);
+      Form.setSuccessFor(firstName);
     }
 
-    if(secondNameValue === '') {
-      this.setErrorFor(secondName, 'Second name cannot be blank');
-    } else if (this.isName(secondNameValue)) {
-      this.setErrorFor(secondName, 'Second name cannot contain numbers or special characters');
+    if (secondNameValue === '') {
+      Form.setErrorFor(secondName, 'Second name cannot be blank');
+    } else if (Form.isName(secondNameValue)) {
+      Form.setErrorFor(secondName, 'Second name cannot contain numbers or special characters');
     } else {
-      this.setSuccessFor(secondName);
+      Form.setSuccessFor(secondName);
     }
 
-    if(emailValue === '') {
-       this.setErrorFor(email, 'Email cannot be blank');
-    } else if (!this.isEmail(emailValue)) {
-      this.setErrorFor(email, 'Email cannot contain special characters');
+    if (emailValue === '') {
+      Form.setErrorFor(email, 'Email cannot be blank');
+    } else if (!Form.isEmail(emailValue)) {
+      Form.setErrorFor(email, 'Email cannot contain special characters');
     } else {
-      this.setSuccessFor(email);
+      Form.setSuccessFor(email);
     }
   }
 
-  private setErrorFor(input: HTMLElement, message: string): void {
+  static setErrorFor(input: HTMLElement, message: string): void {
     const formControl = input.parentElement;
     const small = formControl?.querySelector('small');
 
@@ -103,16 +105,16 @@ export class Form extends BaseComponent {
     if (small) small.innerText = message;
   }
 
-  private setSuccessFor(input: HTMLElement): void {
+  static setSuccessFor(input: HTMLElement): void {
     const formControl = input.parentElement;
     if (formControl) formControl.className = 'form-control success';
   }
 
-  private isName(name: string): boolean {
-    return /[0-9!~@#$%^&*()_+-={}[\].,:;"'?\/|<>]/.test(name);
+  static isName(name: string): boolean {
+    return /[0-9!~@#$%^&*()_+-={}[\].,:;"'?|<>]/.test(name);
   }
 
-  private isEmail(email: string): boolean {
-    return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
+  static isEmail(email: string): boolean {
+    return /^(([^<>().,;:\s@"]+(\.[^<>().,;:\s@"]+)*)|(".+"))@(([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
   }
 }

@@ -8,13 +8,13 @@ export class PopUp extends BaseComponent {
    */
   public isReg: boolean;
 
-  form: Form;
+  private readonly form: Form;
 
   constructor() {
     super('div', ['pop-up']);
 
     this.isReg = false;
-    this.form = new Form;
+    this.form = new Form();
   }
 
   winner(minutes: number, seconds: number, score: number) {
@@ -22,7 +22,7 @@ export class PopUp extends BaseComponent {
       <div class="pop-up__body">
         <div class="pop-up__content">
           <div class="pop-up__text">
-          Congratulations! You successfully found all matches on ${minutes ? `${minutes}.${seconds} minutes` : `${seconds} seconds`}.
+          Congratulations! You successfully found all matches on ${(minutes * 60) + seconds} seconds.
           You have scored ${score} points. Would you like to save your results?
           </div>
           <div class="buttons">
@@ -41,7 +41,7 @@ export class PopUp extends BaseComponent {
         if (timerCount) timerCount.innerHTML = '00:00';
       } else if (target.id === 'yes') {
         this.isReg = true;
-        this.element.classList.add('hidden')
+        this.element.classList.add('hidden');
         this.element.before(this.form.element);
         this.form.validate();
       }

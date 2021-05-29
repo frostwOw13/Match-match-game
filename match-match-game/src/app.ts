@@ -7,28 +7,28 @@ import { Form } from './components/form/form';
 
 export class App {
   /**
-	 * Header component.
-	 */
+   * Header component.
+   */
   private readonly header: Header;
 
   /**
-	 * About game page route.
-	 */
+    * About game page route.
+    */
   private readonly aboutGame: AboutGame;
 
   /**
-	 * Best score page route.
-	 */
+   * Best score page route.
+   */
   private readonly bestScore: BestScore;
 
   /**
-	 * Game page route.
-	 */
+   * Game page route.
+   */
   private readonly game: Game;
 
   /**
-	 * Settings page route.
-	 */
+   * Settings page route.
+   */
   private readonly settings: Settings;
 
   public form: Form;
@@ -57,12 +57,14 @@ export class App {
         break;
       case '#/game/':
         this.rootElement.innerHTML = '';
-          if (this.settings.isAnimal) {
-            this.game.newGame("Animals", this.settings.difficultyField);
-          } else {
-            this.game.newGame("Cars", this.settings.difficultyField);
-          }
-          this.game.gameFirstStart = true;
+
+        if (this.settings.isAnimal) {
+          this.game.newGame('Animals', this.settings.difficultyField);
+        } else {
+          this.game.newGame('Cars', this.settings.difficultyField);
+        }
+
+        this.game.gameFirstStart = true;
         break;
       case '#/best-score/':
         this.rootElement.innerHTML = '';

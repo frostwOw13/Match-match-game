@@ -4,11 +4,10 @@ import { MainField } from './components/main-field/main-field';
 import { PopUp } from './components/pop-up/pop-up';
 import { ImageCategoryModel } from './models/image-category-model';
 import { delay } from './shared/delay';
-import { FLIP_DELAY } from './shared/constants';
+import { FLIP_DELAY, SHOW_TIME } from './shared/constants';
 import { Form } from './components/form/form';
 
 export class Game {
-
   /**
    * Initialized the first game
    */
@@ -60,11 +59,11 @@ export class Game {
       .map((url: string) => new Card(url))
       .sort(() => Math.random() - 0.5);
 
+    this.mainField.addCards(cards);
+
     cards.forEach((card) => {
       card.element.addEventListener('click', () => this.cardHandler(card));
     });
-
-    this.mainField.addCards(cards);
   }
 
   private async cardHandler(card: Card): Promise<void> {
@@ -113,31 +112,31 @@ export class Game {
     this.gameTimer.timerStop();
     const res = await fetch('./images.json');
     const categories: ImageCategoryModel[] = await res.json();
-    const cat = cardsType === "Animals" ? categories[0] : categories[1]
-
+    const cat = cardsType === 'Animals' ? categories[0] : categories[1];
 
     const images = cat.images.slice().map((name) => `${cat.category}/${name}`);
 
     this.continueGame();
 
     if (difficultyField === '4x3') {
-      this.flipField();
+      Game.flipField();
       this.addField(images.slice(4));
     } else if (difficultyField === '4x4') {
-      this.flipField();
+      Game.flipField();
       this.addField(images.slice(2));
     } else {
       this.addField(images);
-      this.flipField();
+      Game.flipField();
     }
-
-    this.gameTimer.timerStart();
+    setTimeout(() => {
+      this.gameTimer.timerStart();
+    }, SHOW_TIME);
   }
 
-  private flipField() {
+  static flipField() {
     document.querySelectorAll('.field-container__card').forEach((card) => {
       card?.classList.toggle('fieldFlip');
-    })
+    });
   }
 
   public continueGame() {
