@@ -57,14 +57,12 @@ export class App {
         break;
       case '#/game/':
         this.rootElement.innerHTML = '';
-        if (!this.game.gameFirstStart) {
-          this.game.newGame();
-          console.log('new game');
+          if (this.settings.isAnimal) {
+            this.game.newGame("Animals", this.settings.difficultyField);
+          } else {
+            this.game.newGame("Cars", this.settings.difficultyField);
+          }
           this.game.gameFirstStart = true;
-        } else {
-          console.log('continue game');
-          this.game.continueGame();
-        }
         break;
       case '#/best-score/':
         this.rootElement.innerHTML = '';
@@ -73,6 +71,8 @@ export class App {
       case '#/settings/':
         this.rootElement.innerHTML = '';
         this.rootElement.appendChild(this.settings.element);
+        this.settings.chooseCardType();
+        this.settings.chooseDifficulty();
         break;
       default:
         throw new Error('No route');

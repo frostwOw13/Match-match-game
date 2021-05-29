@@ -2,7 +2,31 @@
   {
     "category": "animals",
     "images": [
-      "bear.png"
+      "bear.png",
+      "deer.png",
+      "elephant.png",
+      "giraff.png",
+      "gorilla.png",
+      "lion.png",
+      "polarBear.png",
+      "tiger.png",
+      "wolf.png",
+      "zebra.png"
+    ]
+  },
+  {
+    "category": "cars",
+    "images": [
+      "aggera.png",
+      "aston-martin.png",
+      "bmw.png",
+      "dodge.png",
+      "jaguar.png",
+      "maserati.png",
+      "mercedes-sl.png",
+      "mustang.png",
+      "porsche.png",
+      "skyline.png"
     ]
   }
 ]

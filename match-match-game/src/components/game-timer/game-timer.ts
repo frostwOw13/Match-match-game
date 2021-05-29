@@ -36,8 +36,11 @@ export class GameTimer extends BaseComponent {
   }
 
   timerStop() {
-    clearInterval(this.interval);
     this.minutes = 0;
     this.seconds = 0;
+    clearInterval(this.interval);
+    this.element.innerHTML = `
+      <p class="timer__count">00:00</p>
+    `;
   }
 }

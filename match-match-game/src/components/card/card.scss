@@ -10,6 +10,12 @@
   margin: 10px;
   transition: all 0.5s;
 
+  &.fieldFlip {
+    flex: 1 0 17%;
+    width: 148px;
+    height: 148px;
+  }
+
   &:hover > .card {
     transform: translateZ(50px);
     box-shadow: 0 5px 15px gray;

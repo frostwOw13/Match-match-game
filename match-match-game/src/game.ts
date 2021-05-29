@@ -109,17 +109,35 @@ export class Game {
     this.isAnimation = false;
   }
 
-  public async newGame(): Promise<void> {
+  public async newGame(cardsType: string, difficultyField: string): Promise<void> {
+    this.gameTimer.timerStop();
     const res = await fetch('./images.json');
     const categories: ImageCategoryModel[] = await res.json();
-    const cat = categories[0];
+    const cat = cardsType === "Animals" ? categories[0] : categories[1]
 
-    const images = cat.images.map((name) => `${cat.category}/${name}`);
+
+    const images = cat.images.slice().map((name) => `${cat.category}/${name}`);
 
     this.continueGame();
 
-    this.addField(images);
+    if (difficultyField === '4x3') {
+      this.flipField();
+      this.addField(images.slice(4));
+    } else if (difficultyField === '4x4') {
+      this.flipField();
+      this.addField(images.slice(2));
+    } else {
+      this.addField(images);
+      this.flipField();
+    }
+
     this.gameTimer.timerStart();
+  }
+
+  private flipField() {
+    document.querySelectorAll('.field-container__card').forEach((card) => {
+      card?.classList.toggle('fieldFlip');
+    })
   }
 
   public continueGame() {
@@ -128,9 +146,9 @@ export class Game {
   }
 
   private win(): void {
-    this.gameTimer.timerStop();
     const minutes = Number(document.querySelector('.timer__count')?.innerHTML.split(':')[0]);
     const seconds = Number(document.querySelector('.timer__count')?.innerHTML.split(':')[1]);
+    this.gameTimer.timerStop();
     this.score = (this.mainField.cards.length - this.falseCards) * 100 - ((minutes * 60) + seconds);
     if (this.score < 0) this.score = 0;
 
