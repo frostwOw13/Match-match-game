@@ -11,4 +11,4 @@ export const FLIP_CLASS = 'flipped';
 /**
  * Time that show cards before the game starts, ms
  */
-export const SHOW_TIME = 30000;
+export const SHOW_TIME = 1000;

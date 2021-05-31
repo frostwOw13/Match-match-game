@@ -1,8 +1,13 @@
+import { Database } from '../../database';
 import { BaseComponent } from '../base-component';
 import './form.scss';
 
 export class Form extends BaseComponent {
-  private readonly btnAdd: HTMLElement | null;
+  public isValidationSuccess: boolean = false;
+
+  public playerData: Array<unknown> = [];
+
+  private db: Database;
 
   constructor() {
     super('div', ['form']);
@@ -52,22 +57,29 @@ export class Form extends BaseComponent {
       </div>
     `;
 
-    this.btnAdd = document.getElementById('add');
+    this.db = new Database();
   }
 
-  public validate(): void {
+  public validate(score: number): void {
+    const btnAdd = document.getElementById('add');
     const firstName = document.getElementById('firstName');
     const secondName = document.getElementById('secondName');
     const email = document.getElementById('email');
+    this.playerData.push(score);
 
-    this.btnAdd?.addEventListener('click', (e) => {
+    btnAdd.addEventListener('click', (e) => {
       e.preventDefault();
 
-      Form.checkInputs(firstName!, secondName!, email!);
+      this.checkInputs(firstName!, secondName!, email!);
+
+      if (this.playerData.length === 4) {
+        this.db.init('frostwOw13');
+        this.db.write('frostwOw13', this.playerData)
+      }
     });
   }
 
-  static checkInputs(firstName: HTMLElement, secondName: HTMLElement, email: HTMLElement): void {
+  private checkInputs(firstName: HTMLElement, secondName: HTMLElement, email: HTMLElement): void {
     const firstNameValue = (<HTMLInputElement>document.getElementById('firstName')).value.trim();
     const secondNameValue = (<HTMLInputElement>document.getElementById('secondName')).value.trim();
     const emailValue = (<HTMLInputElement>document.getElementById('email')).value.trim();
@@ -75,17 +87,23 @@ export class Form extends BaseComponent {
     if (firstNameValue === '') {
       Form.setErrorFor(firstName, 'First name cannot be blank');
     } else if (Form.isName(firstNameValue)) {
-      Form.setErrorFor(firstName, 'First name cannot contain numbers or special characters');
+      Form.setErrorFor(firstName, 'First name cannot contain special characters');
+    } else if (!Form.isContainLetters(firstNameValue)) {
+      Form.setErrorFor(firstName, 'First name cannot consist only of numbers');
     } else {
       Form.setSuccessFor(firstName);
+      this.playerData.push(firstNameValue);
     }
 
     if (secondNameValue === '') {
       Form.setErrorFor(secondName, 'Second name cannot be blank');
     } else if (Form.isName(secondNameValue)) {
-      Form.setErrorFor(secondName, 'Second name cannot contain numbers or special characters');
+      Form.setErrorFor(secondName, 'Second name cannot contain special characters');
+    } else if (!Form.isContainLetters(secondNameValue)) {
+      Form.setErrorFor(secondName, 'First name cannot consist only of numbers');
     } else {
       Form.setSuccessFor(secondName);
+      this.playerData.push(secondNameValue);
     }
 
     if (emailValue === '') {
@@ -94,6 +112,7 @@ export class Form extends BaseComponent {
       Form.setErrorFor(email, 'Email cannot contain special characters');
     } else {
       Form.setSuccessFor(email);
+      this.playerData.push(emailValue);
     }
   }
 
@@ -110,8 +129,12 @@ export class Form extends BaseComponent {
     if (formControl) formControl.className = 'form-control success';
   }
 
+  static isContainLetters(name: string): boolean {
+    return /[^\d]/.test(name);
+  }
+
   static isName(name: string): boolean {
-    return /[0-9!~@#$%^&*()_+-={}[\].,:;"'?|<>]/.test(name);
+    return /[~!@#$%*()_—+=|:;"'`<>,.?\/^\)]/.test(name);
   }
 
   static isEmail(email: string): boolean {

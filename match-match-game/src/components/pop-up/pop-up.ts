@@ -43,7 +43,7 @@ export class PopUp extends BaseComponent {
         this.isReg = true;
         this.element.classList.add('hidden');
         this.element.before(this.form.element);
-        this.form.validate();
+        this.form.validate(score);
       }
     });
   }

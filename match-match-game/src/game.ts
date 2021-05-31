@@ -120,7 +120,7 @@ export class Game {
 
     if (difficultyField === '4x3') {
       Game.flipField();
-      this.addField(images.slice(4));
+      this.addField(images.slice(9));
     } else if (difficultyField === '4x4') {
       Game.flipField();
       this.addField(images.slice(2));
@@ -156,9 +156,7 @@ export class Game {
     this.popUp.winner(minutes, seconds, this.score);
     if (this.popUp.isReg) {
       this.popUp.element.classList.add('hidden');
-
       this.mainField.element.appendChild(this.form.element);
-      this.form.validate();
     }
     this.gameFirstStart = false;
   }

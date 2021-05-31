@@ -4,7 +4,15 @@ import { BestScore } from './components/best-score/best-score';
 import { Settings } from './components/settings-page/settings';
 import { Game } from './game';
 import { Form } from './components/form/form';
+import { Database } from './database';
 
+interface MyRecord {
+  firstName: string
+  secondName: string
+  email: string
+  score: number
+  id?: IDBValidKey
+}
 export class App {
   /**
    * Header component.
@@ -33,6 +41,8 @@ export class App {
 
   public form: Form;
 
+  public database: Database;
+
   constructor(private readonly rootElement: HTMLElement) {
     this.header = new Header();
     this.aboutGame = new AboutGame();
@@ -40,6 +50,7 @@ export class App {
     this.settings = new Settings();
     this.game = new Game();
     this.form = new Form();
+    this.database = new Database();
 
     window.location.hash = '#/';
     this.render(window.location.hash);
@@ -54,6 +65,16 @@ export class App {
       case '#/':
         this.rootElement.innerHTML = '';
         this.rootElement.appendChild(this.aboutGame.element);
+        // this.database.init('frostwOw13');
+
+        // this.database.write<MyRecord>('frostwOw13', {
+        //   firstName: '12321',
+        //   secondName: 'a12313s',
+        //   email: 'as11111111d',
+        //   score: 333,
+        // })
+        // this.database.readAll<MyRecord>('frostwOw13');
+        // this.database.readFiltered<MyRecord>('frostwOw13', (item) => item.email.length < 6);
         break;
       case '#/game/':
         this.rootElement.innerHTML = '';
