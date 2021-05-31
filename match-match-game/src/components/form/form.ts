@@ -3,7 +3,7 @@ import { BaseComponent } from '../base-component';
 import './form.scss';
 
 export class Form extends BaseComponent {
-  public isValidationSuccess: boolean = false;
+  public isValidationSuccess = false;
 
   public playerData: Array<unknown> = [];
 
@@ -74,7 +74,7 @@ export class Form extends BaseComponent {
 
       if (this.playerData.length === 4) {
         this.db.init('frostwOw13');
-        this.db.write('frostwOw13', this.playerData)
+        this.db.write('frostwOw13', this.playerData);
       }
     });
   }
@@ -134,7 +134,7 @@ export class Form extends BaseComponent {
   }
 
   static isName(name: string): boolean {
-    return /[~!@#$%*()_—+=|:;"'`<>,.?\/^\)]/.test(name);
+    return /[~!@#$%*()_—+=|:;"'`<>,.?^]/.test(name);
   }
 
   static isEmail(email: string): boolean {

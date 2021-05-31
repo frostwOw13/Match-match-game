@@ -120,7 +120,7 @@ export class Game {
 
     if (difficultyField === '4x3') {
       Game.flipField();
-      this.addField(images.slice(9));
+      this.addField(images.slice(4));
     } else if (difficultyField === '4x4') {
       Game.flipField();
       this.addField(images.slice(2));
@@ -128,9 +128,7 @@ export class Game {
       this.addField(images);
       Game.flipField();
     }
-    setTimeout(() => {
-      this.gameTimer.timerStart();
-    }, SHOW_TIME);
+    this.gameTimer.timerStart();
   }
 
   static flipField() {

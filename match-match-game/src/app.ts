@@ -84,8 +84,6 @@ export class App {
         } else {
           this.game.newGame('Cars', this.settings.difficultyField);
         }
-
-        this.game.gameFirstStart = true;
         break;
       case '#/best-score/':
         this.rootElement.innerHTML = '';
