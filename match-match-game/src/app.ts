@@ -65,6 +65,10 @@ export class App {
       case '#/':
         this.rootElement.innerHTML = '';
         this.rootElement.appendChild(this.aboutGame.element);
+        document.querySelectorAll('.nav__item').forEach((item) => {
+          item.classList.remove('active');
+        });
+        document.querySelectorAll('.nav__item')[0].classList.add('active');
         // this.database.init('frostwOw13');
 
         // this.database.write<MyRecord>('frostwOw13', {
@@ -88,12 +92,20 @@ export class App {
       case '#/best-score/':
         this.rootElement.innerHTML = '';
         this.rootElement.appendChild(this.bestScore.element);
+        document.querySelectorAll('.nav__item').forEach((item) => {
+          item.classList.remove('active');
+        });
+        document.querySelectorAll('.nav__item')[1].classList.add('active');
         break;
       case '#/settings/':
         this.rootElement.innerHTML = '';
         this.rootElement.appendChild(this.settings.element);
         this.settings.chooseCardType();
         this.settings.chooseDifficulty();
+        document.querySelectorAll('.nav__item').forEach((item) => {
+          item.classList.remove('active');
+        });
+        document.querySelectorAll('.nav__item')[2].classList.add('active');
         break;
       default:
         throw new Error('No route');
