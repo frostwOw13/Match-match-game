@@ -1,9 +1,20 @@
 import { BaseComponent } from '../base-component';
 import { Player } from './player/player';
+import { Database } from '../../database';
 import './best-score.scss';
 
+interface MyObject {
+  score?: number
+  firstName?: string
+  secondName?: string
+  email?: string
+}
 export class BestScore extends BaseComponent {
-  private readonly players: Player[] = [];
+  private players: Player[] = [];
+
+  private db: Database;
+
+  private playersData: { [key: string]: unknown }[] = [];
 
   constructor() {
     super('div', ['best-score']);
@@ -11,15 +22,56 @@ export class BestScore extends BaseComponent {
     this.element.innerHTML = `
       <h2 class="best-score__title">Best players</h2>
     `;
-    this.players.push(
-      new Player('Nicci Troiani', 'nicci@gmail.com', 456),
-      new Player('George Fields', 'jack@gmail.com', 358),
-      new Player('Jones Dermot', 'dermot@gamil.com', 211),
-      new Player('Jane Doe', 'jane.doe@gmail.com', 169),
-    );
 
-    this.players.forEach((player) => {
-      this.element.appendChild(player.element);
-    });
+    this.db = new Database();
+  }
+
+  public initRecords(): void {
+    this.db.init('frostwOw13');
+    setTimeout(async () => {
+      this.playersData = await this.db.readAll('frostwOw13');
+
+      setTimeout(() => {
+        this.playersData.forEach((playerDataObject) => {
+          const {
+            score,
+            firstName,
+            secondName,
+            email,
+          }: MyObject = playerDataObject;
+
+          if (this.players.length !== 0) {
+            this.checkUniq();
+            this.players.push(new Player(`${firstName} ${secondName}`, email, score));
+          } else {
+            this.players.push(new Player(`${firstName} ${secondName}`, email, score));
+          }
+        });
+
+        this.players.sort((a, b) => {
+          if (a.score > b.score) {
+            return -1;
+          }
+          if (a.score < b.score) {
+            return 1;
+          }
+          return 0;
+        });
+
+        if (this.element.children.length <= 10) {
+          this.players.forEach((player) => {
+            this.element.appendChild(player.element);
+          });
+        }
+      }, 100);
+    }, 100);
+  }
+
+  private checkUniq() {
+    this.players = this.players.filter(
+      (el, i, array) => !array
+        .slice(0, i)
+        .find(({ score, fullName, email }) => score === el.score && fullName === el.fullName && email === el.email),
+    );
   }
 }

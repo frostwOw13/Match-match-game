@@ -28,7 +28,6 @@ export class AboutGameField extends BaseComponent {
         <div class="item__number">3</div>
         <p class="item__title">
           If you want save your results register new player.<br>
-          🚧🚧/* IndexedDB in work */🚧🚧
         </p>
       </div>
 

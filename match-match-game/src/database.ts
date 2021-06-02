@@ -1,65 +1,59 @@
 export class Database {
   private db: IDBDatabase;
 
-  init(dbName: string, version?: number) {
-    const iDB = window.indexedDB;
-    const openRequest = iDB.open(dbName, version);
-    openRequest.onupgradeneeded = () => {
-      const database = openRequest.result;
-      const store = database.createObjectStore('frostwOw13', {
-        keyPath: 'id',
-        autoIncrement: true,
-      });
-      this.db = database;
-    };
-
-    openRequest.onsuccess = () => {
-      this.db = openRequest.result;
-    };
+  constructor() {
+    this.db = null;
   }
 
-  write(collection: string, data: Array<unknown>) {
+  init(dbName: string, version?: number): Promise<IDBDatabase> {
+    return new Promise((resolve, reject) => {
+      const iDb = window.indexedDB;
+      const openRequest = iDb.open(dbName, version);
+      openRequest.onupgradeneeded = () => {
+        const database = openRequest.result;
+        const store = database.createObjectStore(dbName, {
+          keyPath: 'id',
+          autoIncrement: true,
+        });
+        store.createIndex('score', 'score');
+        this.db = database;
+        resolve(this.db);
+      };
+
+      openRequest.onsuccess = () => {
+        this.db = openRequest.result;
+        resolve(this.db);
+      };
+
+      openRequest.onerror = () => {
+        reject(this.db);
+      };
+    });
+  }
+
+  public write(collection: string, data: { [key: string]: unknown }): void {
     const transaction = this.db.transaction(collection, 'readwrite');
     const store = transaction.objectStore(collection);
     const res = store.add({});
     res.onsuccess = () => {
       const newRecord = { ...data, id: res.result };
       const result = store.put(newRecord);
-      console.log(result);
     };
   }
 
-  readAll(collection: string) {
-    const transaction = this.db.transaction(collection, 'readonly');
-    const store = transaction.objectStore(collection);
-    const result = store.getAll();
+  public readAll(collection: string): Promise<any[]> {
+    return new Promise((resolve, reject) => {
+      const transaction = this.db.transaction(collection, 'readonly');
+      const store = transaction.objectStore(collection);
+      const result = store.getAll();
 
-    transaction.oncomplete = () => {
-      console.log(result.result);
-    };
-    transaction.onerror = () => {
-      console.log(result.error);
-    };
-  }
-
-  readFiltered(collection: string, filter: (item: number | string) => boolean) {
-    const transaction = this.db.transaction(collection, 'readonly');
-    const store = transaction.objectStore(collection);
-    const result = store.index('email').openCursor(null, 'prev');
-    const resData: Array<any> = [];
-    result.onsuccess = () => {
-      const cursor = result.result;
-      if (cursor) {
-        const currentValue = cursor.value;
-        if (filter(currentValue)) {
-          resData.push(currentValue);
-        }
-        cursor.continue();
-      }
-    };
-    transaction.oncomplete = () => {
-      console.log(resData);
-    };
+      transaction.oncomplete = () => {
+        resolve(result.result);
+      };
+      transaction.onerror = () => {
+        reject(result.error);
+      };
+    });
   }
 }
 

@@ -19,7 +19,7 @@ export class GameTimer extends BaseComponent {
     this.minutes = 0;
   }
 
-  timerStart() {
+  public timerStart(): void {
     this.interval = setInterval(() => {
       if (this.seconds > 59) {
         this.minutes++;
@@ -35,7 +35,7 @@ export class GameTimer extends BaseComponent {
     }, 1000);
   }
 
-  timerStop() {
+  public timerStop(): void {
     this.minutes = 0;
     this.seconds = 0;
     clearInterval(this.interval);

@@ -17,7 +17,7 @@ export class PopUp extends BaseComponent {
     this.form = new Form();
   }
 
-  winner(minutes: number, seconds: number, score: number) {
+  public winner(minutes: number, seconds: number, score: number): void {
     this.element.innerHTML = `
       <div class="pop-up__body">
         <div class="pop-up__content">

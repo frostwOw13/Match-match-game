@@ -12,12 +12,12 @@ export class MainField extends BaseComponent {
     super('div', ['main__field']);
   }
 
-  clear() {
+  public clear(): void {
     this.cards = [];
     this.element.innerHTML = '';
   }
 
-  addCards(cards: Card[]) {
+  public addCards(cards: Card[]): void {
     this.cards = cards;
     this.cards.forEach((card) => this.element.appendChild(card.element));
     setTimeout(() => {
@@ -25,7 +25,7 @@ export class MainField extends BaseComponent {
     }, SHOW_TIME);
   }
 
-  removeAddClass(activeCard: HTMLElement, card: HTMLElement, type: string) {
+  public removeAddClass(activeCard: HTMLElement, card: HTMLElement, type: string): void {
     activeCard.classList.add('red');
     card.classList.add('red');
 

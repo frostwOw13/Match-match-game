@@ -1,13 +1,22 @@
 import { Database } from '../../database';
 import { BaseComponent } from '../base-component';
+import { BestScore } from '../best-score/best-score';
 import './form.scss';
 
 export class Form extends BaseComponent {
+  /**
+   * If all field in form is valid
+   */
   public isValidationSuccess = false;
 
+  /**
+   * Array for store the data from inputs
+   */
   public playerData: Array<unknown> = [];
 
   private db: Database;
+
+  private bestScore: BestScore;
 
   constructor() {
     super('div', ['form']);
@@ -58,6 +67,7 @@ export class Form extends BaseComponent {
     `;
 
     this.db = new Database();
+    this.bestScore = new BestScore();
   }
 
   public validate(score: number): void {
@@ -73,10 +83,25 @@ export class Form extends BaseComponent {
       this.checkInputs(firstName!, secondName!, email!);
 
       if (this.playerData.length === 4) {
-        this.db.init('frostwOw13');
-        this.db.write('frostwOw13', this.playerData);
+        this.upToDB();
       }
     });
+  }
+
+  private upToDB(): void {
+    const playerDataObj: { [key: string]: unknown } = {
+      score: this.playerData[0],
+      firstName: this.playerData[1],
+      secondName: this.playerData[2],
+      email: this.playerData[3],
+    };
+
+    this.db.init('frostwOw13');
+    setTimeout(() => {
+      this.db.write('frostwOw13', playerDataObj);
+    }, 100);
+    window.location.hash = '#/best-score/';
+    this.bestScore.initRecords();
   }
 
   private checkInputs(firstName: HTMLElement, secondName: HTMLElement, email: HTMLElement): void {
@@ -130,14 +155,17 @@ export class Form extends BaseComponent {
   }
 
   static isContainLetters(name: string): boolean {
-    return /[^\d]/.test(name);
+    const regexp = /[^\d]/;
+    return regexp.test(name);
   }
 
   static isName(name: string): boolean {
-    return /[~!@#$%*()_—+=|:;"'`<>,.?^]/.test(name);
+    const regexp = /[~!@#$%*()_—+=|:;"'`<>,.?^]/;
+    return regexp.test(name);
   }
 
   static isEmail(email: string): boolean {
-    return /^(([^<>().,;:\s@"]+(\.[^<>().,;:\s@"]+)*)|(".+"))@(([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
+    const regexp = /^(([^<>().,;:\s@"]+(\.[^<>().,;:\s@"]+)*)|(".+"))@(([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return regexp.test(email);
   }
 }

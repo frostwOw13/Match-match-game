@@ -2,11 +2,11 @@ import { BaseComponent } from '../../base-component';
 import './player.scss';
 
 export class Player extends BaseComponent {
-  private fullName: string;
+  public fullName: string;
 
-  private email: string;
+  public email: string;
 
-  private score: number;
+  public score: number;
 
   constructor(fullName: string, email: string, score: number) {
     super('div', ['best-score__player']);

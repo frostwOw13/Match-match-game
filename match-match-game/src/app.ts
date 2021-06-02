@@ -6,13 +6,6 @@ import { Game } from './game';
 import { Form } from './components/form/form';
 import { Database } from './database';
 
-interface MyRecord {
-  firstName: string
-  secondName: string
-  email: string
-  score: number
-  id?: IDBValidKey
-}
 export class App {
   /**
    * Header component.
@@ -56,7 +49,7 @@ export class App {
     this.render(window.location.hash);
   }
 
-  render(location: string): void {
+  public render(location: string): void {
     this.rootElement.before(this.header.element);
 
     window.onhashchange = () => this.render(window.location.hash);
@@ -69,16 +62,6 @@ export class App {
           item.classList.remove('active');
         });
         document.querySelectorAll('.nav__item')[0].classList.add('active');
-        // this.database.init('frostwOw13');
-
-        // this.database.write<MyRecord>('frostwOw13', {
-        //   firstName: '12321',
-        //   secondName: 'a12313s',
-        //   email: 'as11111111d',
-        //   score: 333,
-        // })
-        // this.database.readAll<MyRecord>('frostwOw13');
-        // this.database.readFiltered<MyRecord>('frostwOw13', (item) => item.email.length < 6);
         break;
       case '#/game/':
         this.rootElement.innerHTML = '';
@@ -92,6 +75,9 @@ export class App {
       case '#/best-score/':
         this.rootElement.innerHTML = '';
         this.rootElement.appendChild(this.bestScore.element);
+
+        this.bestScore.initRecords();
+
         document.querySelectorAll('.nav__item').forEach((item) => {
           item.classList.remove('active');
         });
