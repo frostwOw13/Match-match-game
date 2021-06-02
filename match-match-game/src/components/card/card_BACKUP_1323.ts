@@ -4,11 +4,8 @@ import { CardSelf } from './card-self/card-self';
 import { FLIP_CLASS } from '../../shared/constants';
 
 export class Card extends BaseComponent {
-<<<<<<< HEAD
+
   isFlipped: boolean = false;
-=======
-  isFlipped: boolean = false;
->>>>>>> f0a46c0acb25b78089d33df3a4fd96dc4013a90e
 
   readonly cardSelf: CardSelf;
 

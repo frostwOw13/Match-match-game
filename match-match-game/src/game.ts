@@ -131,13 +131,13 @@ export class Game {
     this.gameTimer.timerStart();
   }
 
-  static flipField() {
+  static flipField(): void {
     document.querySelectorAll('.field-container__card').forEach((card) => {
       card?.classList.toggle('fieldFlip');
     });
   }
 
-  public continueGame() {
+  public continueGame(): void {
     document.getElementById('main')?.appendChild(this.gameTimer.element);
     document.getElementById('main')?.appendChild(this.mainField.element);
   }

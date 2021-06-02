@@ -16,6 +16,7 @@
   cursor: pointer;
   padding-bottom: 15px;
   border-bottom: solid 1px #E5E5E5;
+  
   select {
     display: block;
     width: 100%;
@@ -30,6 +31,7 @@
       background: none;
     }
   }
+
   &:after {
     content: "";
     display: block;
