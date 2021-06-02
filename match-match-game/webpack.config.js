@@ -55,6 +55,11 @@ module.exports = ({development}) => ({
       },
     ],
   },
+  performance: {
+    hints: false,
+    maxEntrypointSize: 512000,
+    maxAssetSize: 512000
+  },
   plugins: [
     ...esLintPlugin(development),
     new MiniCssExtractPlugin({filename: '[name].[contenthash].css'}),

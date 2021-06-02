@@ -21,7 +21,7 @@ export class Player extends BaseComponent {
         <p class="item__name">${this.fullName}</p>
         <p class="item__email">${this.email}</p>
       </div>
-      <p class="player__score">Score: <span>${this.score}</span></p>
+      <p class="player__score">Score: <span class="player__score-number">${this.score}</span></p>
     `;
   }
 }

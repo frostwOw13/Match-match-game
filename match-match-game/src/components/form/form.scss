@@ -24,7 +24,7 @@
   margin-left: 16px;
   padding-top: 15px;
 
-  .form__header h2 {
+  .header__title {
     font-weight: 500;
     font-size: 20px;
     line-height: 30px;
@@ -111,7 +111,7 @@
     }
   }
 
-  button {
+  .btn {
     position: relative;
     background-color: #2196F3;
     border: none;

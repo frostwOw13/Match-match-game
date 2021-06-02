@@ -4,9 +4,9 @@ import './main-field.scss';
 import { SHOW_TIME } from '../../shared/constants';
 
 export class MainField extends BaseComponent {
-  cards: Card[] = [];
+  public cards: Card[] = [];
 
-  interval!: ReturnType<typeof setInterval>;
+  public interval!: ReturnType<typeof setInterval>;
 
   constructor() {
     super('div', ['main__field']);

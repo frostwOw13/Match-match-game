@@ -12,3 +12,13 @@ export const FLIP_CLASS = 'flipped';
  * Time that show cards before the game starts, ms
  */
 export const SHOW_TIME = 10000;
+
+/**
+ * Interface for store the player data
+ */
+export interface MyObject {
+  score?: number
+  firstName?: string
+  secondName?: string
+  email?: string
+}

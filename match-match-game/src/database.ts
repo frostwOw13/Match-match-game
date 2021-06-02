@@ -5,7 +5,7 @@ export class Database {
     this.db = null;
   }
 
-  init(dbName: string, version?: number): Promise<IDBDatabase> {
+  public init(dbName: string, version?: number): Promise<IDBDatabase> {
     return new Promise((resolve, reject) => {
       const iDb = window.indexedDB;
       const openRequest = iDb.open(dbName, version);
@@ -38,10 +38,11 @@ export class Database {
     res.onsuccess = () => {
       const newRecord = { ...data, id: res.result };
       const result = store.put(newRecord);
+      return result;
     };
   }
 
-  public readAll(collection: string): Promise<any[]> {
+  public readAll(collection: string): Promise<{ [key: string]: unknown }[]> {
     return new Promise((resolve, reject) => {
       const transaction = this.db.transaction(collection, 'readonly');
       const store = transaction.objectStore(collection);
@@ -56,16 +57,3 @@ export class Database {
     });
   }
 }
-
-// let iDb = new Database()
-// iDb.init('frostwOw13')
-// iDb.readAll<MyRecord>('frostwOw13').then((arr) => {
-//   console.log(arr)
-// })
-// iDb.write<MyRecord>('frostwOw13', {
-//   firstName: 'asda',
-//   secondName: 'asdads',
-//   email: 'asdad',
-//   score: 121,
-// })
-// iDb.readFiltered<MyRecord>('frostwOw13', (item) => item.email.length < 6)

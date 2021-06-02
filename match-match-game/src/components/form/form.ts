@@ -25,7 +25,7 @@ export class Form extends BaseComponent {
       <div class="form__container">
         <div class="form__body">
           <div class="form__header">
-            <h3>Register new player</h3>
+            <h3 class="header__title">Register new player</h3>
           </div>
 
           <div class="form-wrapper">
@@ -34,21 +34,30 @@ export class Form extends BaseComponent {
               <div class="form-control">
                 <label for="firstName">First name</label>
                 <input type="text" placeholder="Jones" id="firstName" maxlength="30"/>
-                <div class="checkbox"><span class="checkbox__first-part"></span><span class="second-part"></span></div>
+                <div class="checkbox">
+                  <span class="checkbox__first-part"></span>
+                  <span class="checkbox__second-part"></span>
+                </div>
                 <small>Error message</small>
               </div>
 
               <div class="form-control">
                 <label for="secondName">Second name</label>
                 <input type="text" placeholder="Dermot" id="secondName" maxlength="30"/>
-                <div class="checkbox"><span class="checkbox__first-part"></span><span class="second-part"></span></div>
+                <div class="checkbox">
+                  <span class="checkbox__first-part"></span>
+                  <span class="checkbox__second-part"></span>
+                </div>
                 <small>Error message</small>
               </div>
 
               <div class="form-control">
                 <label for="email">Email</label>
                 <input type="email" placeholder="example@gmail.com" id="email" maxlength="30"/>
-                <div class="checkbox"><span class="checkbox__first-part"></span><span class="second-part"></span></div>
+                <div class="checkbox">
+                  <span class="checkbox__first-part"></span>
+                  <span class="checkbox__second-part"></span>
+                </div>
                 <small>Error message</small>
               </div>
 
@@ -80,7 +89,7 @@ export class Form extends BaseComponent {
     btnAdd.addEventListener('click', (e) => {
       e.preventDefault();
 
-      this.checkInputs(firstName!, secondName!, email!);
+      this.checkInputs(firstName, secondName, email);
 
       if (this.playerData.length === 4) {
         this.upToDB();

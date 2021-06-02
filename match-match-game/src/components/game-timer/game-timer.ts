@@ -2,11 +2,11 @@ import { BaseComponent } from '../base-component';
 import './game-timer.scss';
 
 export class GameTimer extends BaseComponent {
-  seconds: number;
+  public seconds: number;
 
-  minutes: number;
+  public minutes: number;
 
-  interval!: ReturnType<typeof setInterval>;
+  private interval!: ReturnType<typeof setInterval>;
 
   constructor() {
     super('div', ['main__timer']);

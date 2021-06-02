@@ -3,6 +3,7 @@
 }
 
 .settings__item {
+
   .item__title {
     font-weight: 500;
     font-size: 20px;
@@ -16,8 +17,8 @@
   cursor: pointer;
   padding-bottom: 15px;
   border-bottom: solid 1px #E5E5E5;
-  
-  select {
+
+  .settings-chooser__select {
     display: block;
     width: 100%;
     background: none;

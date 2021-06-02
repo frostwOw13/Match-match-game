@@ -27,6 +27,7 @@
   &.red {
     background-color: red;
   }
+  
   &.red > .card_front {
     border-radius: 5px;
     opacity: 0.6;
@@ -35,6 +36,7 @@
   &.green {
     background-color: green;
   }
+
   &.green > .card_front {
     border-radius: 5px;
     opacity: 0.6;

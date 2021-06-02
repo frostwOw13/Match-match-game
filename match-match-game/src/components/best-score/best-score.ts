@@ -1,14 +1,9 @@
 import { BaseComponent } from '../base-component';
 import { Player } from './player/player';
 import { Database } from '../../database';
+import { MyObject } from '../../shared/constants';
 import './best-score.scss';
 
-interface MyObject {
-  score?: number
-  firstName?: string
-  secondName?: string
-  email?: string
-}
 export class BestScore extends BaseComponent {
   private players: Player[] = [];
 
@@ -67,7 +62,7 @@ export class BestScore extends BaseComponent {
     }, 100);
   }
 
-  private checkUniq() {
+  private checkUniq(): void {
     this.players = this.players.filter(
       (el, i, array) => !array
         .slice(0, i)

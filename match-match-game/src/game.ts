@@ -4,7 +4,7 @@ import { MainField } from './components/main-field/main-field';
 import { PopUp } from './components/pop-up/pop-up';
 import { ImageCategoryModel } from './models/image-category-model';
 import { delay } from './shared/delay';
-import { FLIP_DELAY, SHOW_TIME } from './shared/constants';
+import { FLIP_DELAY } from './shared/constants';
 import { Form } from './components/form/form';
 
 export class Game {

@@ -27,11 +27,7 @@ export class Settings extends BaseComponent {
     this.element.appendChild(this.difficulty.element);
   }
 
-<<<<<<< HEAD
-  chooseCardType(): void {
-=======
-  chooseCardType(): void {
->>>>>>> f0a46c0acb25b78089d33df3a4fd96dc4013a90e
+  public chooseCardType(): void {
     const option = document.getElementById('cards-type') as HTMLInputElement;
     option.addEventListener('input', () => {
       if (option.value === 'Animals') {

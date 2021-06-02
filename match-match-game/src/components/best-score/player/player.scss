@@ -7,17 +7,18 @@
   line-height: 24px;
   border-bottom: solid 1px rgba(33, 33, 33, 0.08);
   margin-bottom: 10px;
-  
+
   .player__picture {
     width: 40px;
     height: 40px;
     border-radius: 20px;
     background-color: gray;
   }
-  
+
   .player__score {
     display: flex;
-    span {
+
+    .player__score-number {
       margin-left: 5px;
       color: #2196F3;
     }

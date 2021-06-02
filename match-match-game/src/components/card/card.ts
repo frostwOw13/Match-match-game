@@ -4,17 +4,14 @@ import { CardSelf } from './card-self/card-self';
 import { FLIP_CLASS } from '../../shared/constants';
 
 export class Card extends BaseComponent {
-<<<<<<< HEAD
-  isFlipped: boolean = false;
-=======
-  isFlipped: boolean = false;
->>>>>>> f0a46c0acb25b78089d33df3a4fd96dc4013a90e
+  public isFlipped: boolean;
 
   readonly cardSelf: CardSelf;
 
   constructor(readonly image: string) {
     super('div', ['field-container__card']);
     this.cardSelf = new CardSelf(image);
+    this.isFlipped = false;
 
     this.element.appendChild(this.cardSelf.element);
   }

@@ -1,11 +1,13 @@
 .about-game__field {
   display: flex;
   justify-content: space-between;
+
   .about-game__images {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-end;
+    
     .images__img {
       width: 330px;
       height: 240px;
@@ -27,6 +29,7 @@
 }
 
 .about-game__blocks {
+
   .blocks__item {
     display: flex;
     justify-content: flex-start;

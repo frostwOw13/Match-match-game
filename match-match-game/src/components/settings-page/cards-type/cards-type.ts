@@ -7,7 +7,7 @@ export class CardsType extends BaseComponent {
     this.element.innerHTML = `
       <p class="item__title">Game cards</p>
       <div class="settings-chooser">
-        <select id="cards-type">
+        <select id="cards-type" class="settings-chooser__select">
           <option value="Animals">Animals</option>
           <option value="Cars">Cars</option>
         </select>
