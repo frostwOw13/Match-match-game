@@ -131,7 +131,7 @@ export class Game {
     this.gameTimer.timerStart();
   }
 
-  static flipField() {
+  static flipField(): void {
     document.querySelectorAll('.field-container__card').forEach((card) => {
       card?.classList.toggle('fieldFlip');
     });
