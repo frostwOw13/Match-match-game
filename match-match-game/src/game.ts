@@ -137,7 +137,7 @@ export class Game {
     });
   }
 
-  public continueGame() {
+  public continueGame(): void {
     document.getElementById('main')?.appendChild(this.gameTimer.element);
     document.getElementById('main')?.appendChild(this.mainField.element);
   }
