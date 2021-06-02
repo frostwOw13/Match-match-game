@@ -1,12 +1,11 @@
 import { BaseComponent } from '../../base-component';
-import './difficulty.scss';
 
 export class Difficulty extends BaseComponent {
   constructor() {
-    super('div', ['settings__dif']);
+    super('div', ['settings__item']);
 
     this.element.innerHTML = `
-      <p class="dif__title">Difficulty</p>
+      <p class="item__title">Difficulty</p>
       <div class="settings-chooser">
         <select id="difficulty">
           <option value="1">4x3</option>

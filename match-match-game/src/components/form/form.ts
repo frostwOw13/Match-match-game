@@ -34,21 +34,21 @@ export class Form extends BaseComponent {
               <div class="form-control">
                 <label for="firstName">First name</label>
                 <input type="text" placeholder="Jones" id="firstName" maxlength="30"/>
-                <div class="checkbox"><span class="first"></span><span class="second"></span></div>
+                <div class="checkbox"><span class="checkbox__first-part"></span><span class="second-part"></span></div>
                 <small>Error message</small>
               </div>
 
               <div class="form-control">
                 <label for="secondName">Second name</label>
                 <input type="text" placeholder="Dermot" id="secondName" maxlength="30"/>
-                <div class="checkbox"><span class="first"></span><span class="second"></span></div>
+                <div class="checkbox"><span class="checkbox__first-part"></span><span class="second-part"></span></div>
                 <small>Error message</small>
               </div>
 
               <div class="form-control">
                 <label for="email">Email</label>
                 <input type="email" placeholder="example@gmail.com" id="email" maxlength="30"/>
-                <div class="checkbox"><span class="first"></span><span class="second"></span></div>
+                <div class="checkbox"><span class="checkbox__first-part"></span><span class="second-part"></span></div>
                 <small>Error message</small>
               </div>
 

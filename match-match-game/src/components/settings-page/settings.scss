@@ -2,6 +2,14 @@
   width: 90%;
 }
 
+.settings__item {
+  .item__title {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 30px;
+  }
+}
+
 .settings-chooser {
   position: relative;
   width: 250px;

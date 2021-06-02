@@ -1,12 +1,11 @@
 import { BaseComponent } from '../../base-component';
-import './cards-type.scss';
 
 export class CardsType extends BaseComponent {
   constructor() {
-    super('div', ['settings__cards-type']);
+    super('div', ['settings__item']);
 
     this.element.innerHTML = `
-      <p class="cards-type__title">Game cards</p>
+      <p class="item__title">Game cards</p>
       <div class="settings-chooser">
         <select id="cards-type">
           <option value="Animals">Animals</option>
