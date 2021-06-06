@@ -1,7 +1,7 @@
 import { BaseComponent } from '../base-component';
 import { Player } from './player/player';
 import { Database } from '../../database';
-import { MyObject } from '../../shared/constants';
+import { playerDataObject } from '../../shared/interfaces';
 import './best-score.scss';
 
 export class BestScore extends BaseComponent {
@@ -33,7 +33,7 @@ export class BestScore extends BaseComponent {
             firstName,
             secondName,
             email,
-          }: MyObject = playerDataObject;
+          }: playerDataObject = playerDataObject;
 
           if (this.players.length !== 0) {
             this.checkUniq();
