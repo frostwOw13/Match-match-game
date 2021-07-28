@@ -3,7 +3,7 @@
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity) [![made-for-VSCode](https://img.shields.io/badge/Made%20for-VSCode-1f425f.svg)](https://code.visualstudio.com/) [![GitHub issues](https://img.shields.io/github/issues/frostwOw13/Match-match-game.svg?style=plastic)](https://github.com/frostwOw13/Match-match-game/issues)
 [![GitHub forks](https://img.shields.io/github/forks/frostwOw13/English-for-kids.svg?style=social)](https://github.com/frostwOw13/Match-match-game/network) [![GitHub stars](https://img.shields.io/github/stars/frostwOw13/Match-match-game.svg?style=popout)](https://github.com/frostwOw13/Match-match-game/stargazers) [![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
 
-An English for kids application for learning English words by children. 💥✨
+A Match match game to train memory. 💥✨
 Click to see [project](https://frostwow13.github.io/Match-match-game/)
 ### 👉 If you like this repo then please give it a ⭐️
 
